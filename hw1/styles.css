@@ -1,3 +1,9 @@
+@media (min-width:600px){
+    .photo{
+    margin:10px;
+}
+}
+
 .country-name{
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     font-size:5vh; 
@@ -7,18 +13,40 @@
     background:linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
 }
 
+.images{
+    display:block;
+    margin:auto;
+}
+
 .images:hover{
-    transform:scale(1.2,1.2);
-    transition:all 2s ease-out;
+    transform:scale(1.05,1.05);
+    transition:all 1s ease-out;
+    border:solid 3px red;
     overflow: hidden;
 }
 
 .description{
     font-family: fantasy;
-    font-size:7vh;
+    font-size:6vh;
+    margin:0px;
 }
 
 .photo-credit{
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size:2vh;
+    text-align:center;
+}
+
+nav a{
+    text-decoration: none;
+    color:inherit;
     font-size:3vh;
 }
+
+nav a:hover{
+    color:blueviolet;
+}
+nav ul{
+    list-style:none;
+}
+
