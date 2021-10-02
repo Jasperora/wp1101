@@ -1,52 +1,38 @@
-@media (min-width:600px){
-    .photo{
-    margin:10px;
-}
-}
-
-.country-name{
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    font-size:5vh; 
-}
-
 .background{
-    background:linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background:linear-gradient(#E6DADA,#274046);
 }
 
 .images{
-    display:block;
+    display:inline;
     margin:auto;
+    width:30vh;
 }
 
 .images:hover{
     transform:scale(1.05,1.05);
     transition:all 1s ease-out;
-    border:solid 3px red;
-    overflow: hidden;
+    border:solid 3vh #7FDBFF;
+}
+
+.images:active{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    transform:scale(2,2);   
+    transition:all sharp;
+    border:solid 40vh transparent;
+    border-image:linear-gradient(#BBD2C5,#536976,#292E49);
+    border-image-slice:1;
 }
 
 .description{
-    font-family: fantasy;
-    font-size:6vh;
-    margin:0px;
+    font-family: Times;
+    font-size:6vw;
+    margin:0;
 }
 
-.photo-credit{
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size:2vh;
-    text-align:center;
+.photo-album{
+    text-align: center;
 }
-
-nav a{
-    text-decoration: none;
-    color:inherit;
-    font-size:3vh;
-}
-
-nav a:hover{
-    color:blueviolet;
-}
-nav ul{
-    list-style:none;
-}
-
