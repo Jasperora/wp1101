@@ -3,7 +3,7 @@
 }
 
 .images{
-    display:inline;
+    display:inline-block;
     margin:auto;
     width:30vh;
 }
@@ -15,14 +15,9 @@
 }
 
 .images:active{
-    position:fixed;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    transform:scale(2,2);   
+    transform:scale(1.5,1.5);   
     transition:all sharp;
-    border:solid 40vh transparent;
+    border:solid 5vh transparent;
     border-image:linear-gradient(#BBD2C5,#536976,#292E49);
     border-image-slice:1;
 }
