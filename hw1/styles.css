@@ -5,31 +5,28 @@
 
 .description{
     font-family: Times;
-    font-size:10vh;
-    margin:3vh;
+    font-size:5vh;
+    margin:1vw;
 }
 
-.photo-pick{
-  float: left;
-    text-align:center;
-    overflow:scroll;
-    overflow-x:hidden;
-    overflow-y: auto;
-    width:20vh;
-    height:82vh;
-    background-color:grey;
+.display-text{
+    font-family: Times;
+    font-size:6vw;
+    margin:1vw;
 }
 
-section{
+.sidebar{
     float: left;
     text-align:center;
     overflow:scroll;
     overflow-x:hidden;
     overflow-y: auto;
-    width:20vh;
-    height:82vh;
+    width:11vw;
+    height: 95vh;
     background-color:grey;
 }
+
+
 
 ::-webkit-scrollbar {
   width: 10px;
@@ -47,30 +44,28 @@ section{
   background: #555; 
 }
 
-article{
-    float:right;
-}
-
 .display{
+    float:right;
     text-align: center;
     align-items: center;
-    margin:20vh;    
+    padding:1vw 5vw;
+    width:70vw;
     display: block;
     flex-wrap: wrap;
 }
 
 .photo-display{
-    width:50vh;
+    width:30vw;
 }
 
 .photo-display:hover{
     transform:scale(1.05,1.05);
     transition:all 1s ease-out;
-    border:solid 3vh #7FDBFF;
+    border:solid 1.5vw #7FDBFF;
 }
 
 .side-photo{
-    width:15vh;
+    width:8vw;
 }
 
 .side-photo:hover{
