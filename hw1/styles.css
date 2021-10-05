@@ -2,48 +2,80 @@
     background:linear-gradient(#E6DADA,#274046);
 }
 
-.images{
-    display:inline-block;
-    margin:auto;
-    width:30vh;
+
+.description{
+    font-family: Times;
+    font-size:10vh;
+    margin:3vh;
 }
 
-.images:hover{
+.photo-pick{
+  float: left;
+    text-align:center;
+    overflow:scroll;
+    overflow-x:hidden;
+    overflow-y: auto;
+    width:20vh;
+    height:82vh;
+    background-color:grey;
+}
+
+section{
+    float: left;
+    text-align:center;
+    overflow:scroll;
+    overflow-x:hidden;
+    overflow-y: auto;
+    width:20vh;
+    height:82vh;
+    background-color:grey;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #312929; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+article{
+    float:right;
+}
+
+.display{
+    text-align: center;
+    align-items: center;
+    margin:20vh;    
+    display: block;
+    flex-wrap: wrap;
+}
+
+.photo-display{
+    width:50vh;
+}
+
+.photo-display:hover{
     transform:scale(1.05,1.05);
     transition:all 1s ease-out;
     border:solid 3vh #7FDBFF;
 }
 
-.images:active{
-    transform:scale(1.5,1.5);   
-    transition:all sharp;
-    border:solid 5vh transparent;
-    border-image:linear-gradient(#BBD2C5,#536976,#292E49);
-    border-image-slice:1;
-}
-
-.description{
-    font-family: Times;
-    font-size:6vw;
-    margin:0;
-}
-
-.photo-album{
-    text-align: center;
-}
-
 .side-photo{
-    width:18vh;
+    width:15vh;
 }
 
 .side-photo:hover{
     transform:scale(1.05,1.05);
-    transition:all sharp;
-}
-
-section{
-    text-align:center;
-    float:left;
-    width:20vh;
-    background-color:grey;
+    transition:all 0.5s;
+    border:solid 1vh;
+    border-image:#9b34eb;
 }
