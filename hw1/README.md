@@ -3,6 +3,19 @@
 ## Responsive Web Design(RWD)
 ---
 <ol>
+<li>區分視窗大小而改變排版
+<p>例如:</p></li>
+
+```
+@media(orientation:portrait){
+    ...
+}
+
+@media(orientation:landscape){
+    ...
+}
+```
+
 <li>在字體大小使用vw(螢幕可視寬度百分比)，使字體大小會隨視窗大小變動而變動，不會破壞排版。
 <p>例如:</p></li>
 
