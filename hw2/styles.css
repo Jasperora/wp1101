@@ -180,3 +180,9 @@
     border:solid 1vh;
     border-image:#9b34eb;
 }
+
+.selected{
+    transform:scale(1.1,1.1);
+    transition: all sharp;
+    border: solid 1vh #ed074c;
+}

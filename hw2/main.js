@@ -27,9 +27,6 @@ let emptyAlbum = document.getElementById("empty-album"),
   previewPhoto = document.getElementById("preview-photo"),
   displayPhoto = document.getElementById("display-photo");
 
-var albumPhotos = [],
-  previewPhotos = [];
-
 let albumIndex = 0,
   previewIndex = 0;
 
@@ -39,28 +36,45 @@ function setAlbumPhoto() {
     albumPhoto.appendChild(photo);
     photo.src = images[i][0];
     photo.classList.add("album-photo");
-    albumPhotos[i] = photo;
+    photo.addEventListener("click", () => {
+      albumIndex = i;
+      changePreviewPhoto(albumIndex);
+    });
   }
 }
 
-function setPreviewPhoto(albumIndex) {
-  for (let i = 0; i < images[albumIndex].length; i++) {
+function setPreviewPhoto(index) {
+  for (let i = 0; i < images[index].length; i++) {
     let photo = document.createElement("img");
     previewPhoto.appendChild(photo);
-    photo.src = images[albumIndex][i];
+    photo.src = images[index][i];
     photo.classList.add("preview-photo");
-    previewPhotos[i] = photo;
+    photo.addEventListener("click", () => {
+      previewIndex = i;
+      changeDisplayPhoto(albumIndex, previewIndex);
+    });
   }
 }
 
-function setDisplayPhoto(albumIndex, previewIndex) {
-  let photo = document.createElement("img");
-  displayPhoto.appendChild(photo);
-  photo.src = images[albumIndex][previewIndex];
+function setDisplayPhoto(index1, index2) {
+  displayPhoto.src = images[index1][index2];
+  displayPhoto.classList.add("display-photo");
+}
+
+function changePreviewPhoto(index) {
+  var photos = previewPhoto.children;
+  for (let i = 0; i < photos.length; i++) previewPhoto.removeChild(photos[i]);
+  setPreviewPhoto(index);
+}
+
+function changeDisplayPhoto(index1, index2) {
+  var photo = displayPhoto;
+  photo.src = images[index1][index2];
   photo.classList.add("display-photo");
 }
 
 setAlbumPhoto();
 setPreviewPhoto(albumIndex);
 setDisplayPhoto(albumIndex, previewIndex);
+
 emptyAlbum.onclick = () => alert("警告!!這是空相簿");
