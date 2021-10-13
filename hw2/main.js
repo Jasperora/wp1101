@@ -51,26 +51,30 @@ function setPreviewPhoto(index) {
     photo.classList.add("preview-photo");
     photo.addEventListener("click", () => {
       previewIndex = i;
-      changeDisplayPhoto(albumIndex, previewIndex);
+      setDisplayPhoto(albumIndex, previewIndex);
     });
   }
 }
 
 function setDisplayPhoto(index1, index2) {
+  for (let i = 0; i < previewPhoto.children.length; i++) {
+    let photos = previewPhoto.children;
+    photos[i].classList.remove("selected");
+  }
   displayPhoto.src = images[index1][index2];
   displayPhoto.classList.add("display-photo");
+  for (let i = 0; i < previewPhoto.children.length; i++) {
+    let photos = previewPhoto.children;
+    if (photos[i].src === images[index1][index2]) {
+      photos[i].classList.add("selected");
+    }
+  }
 }
 
 function changePreviewPhoto(index) {
-  var photos = previewPhoto.children;
-  for (let i = 0; i < photos.length; i++) previewPhoto.removeChild(photos[i]);
+  var photos = previewPhoto.childNodes;
+  for (let i = 0; i < photos.length; i++) photos[i].classList.add("hide");
   setPreviewPhoto(index);
-}
-
-function changeDisplayPhoto(index1, index2) {
-  var photo = displayPhoto;
-  photo.src = images[index1][index2];
-  photo.classList.add("display-photo");
 }
 
 setAlbumPhoto();

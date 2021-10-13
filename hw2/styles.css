@@ -162,10 +162,8 @@
 }
 
 .preview-photo:hover{
-    transform:scale(1.05,1.05);
+    transform:scale(1.2,1.2);
     transition:all 0.5s;
-    border:solid 1vh;
-    border-image:#9b34eb;
 }
 
 .display-photo:hover{
@@ -182,7 +180,10 @@
 }
 
 .selected{
-    transform:scale(1.1,1.1);
     transition: all sharp;
     border: solid 1vh #ed074c;
+}
+
+.hide{
+    display:none;
 }
