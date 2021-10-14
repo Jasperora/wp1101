@@ -14,7 +14,7 @@
 </head>
 <body class="background">
   <header>
-    <p class="description">Photograph</p>
+    <p class="description" id="description">Photograph</p>
   </header>
   <div class="photos">
       <div class="album">
@@ -23,12 +23,15 @@
           <div id="album-photo"></div>
       </div>
       <div class="preview">
-          <p class="preview-text">Preview photo</p>
+          <p class="preview-text" id="preview-text">Preview photo</p>
+          <button id="add-photo">Add photo</button>
           <div id="preview-photo"></div>     
       </div>
       <div class="display">
           <p class="display-text">Photo display</p>
           <img src="" id="display-photo">
+          <p class="caption" id="caption"></p>
+          <button id="delete-button">Delete the photo</button>
       </div>
   </div> 
   <script src="main.js"></script>   

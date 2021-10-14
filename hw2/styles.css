@@ -74,7 +74,7 @@
     }
 
     .album-text{
-        font-size:3vw;
+        font-size:2.5vw;
     }
 
     .display-text{
@@ -83,7 +83,7 @@
     }
 
     .preview-text{
-        font-size:3vw;
+        font-size:2.5vw;
     }
 
     .album{
@@ -141,6 +141,10 @@
     font-family:Times;
 }
 
+.caption{
+    font-size:2vmax;
+}
+
 .background{
     background:linear-gradient(#E6DADA,#274046);
 }
@@ -186,4 +190,18 @@
 
 .hide{
     display:none;
+}
+
+button{
+    background-color: #4CAF50; 
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 2.5vmax;
+}
+
+button:hover{
+    color:#343deb
 }
