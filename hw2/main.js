@@ -41,22 +41,24 @@ let albumIndex = 0,
 function addPhoto() {
   addPhotoButton.onclick = () => {
     var url = prompt("請問要新增的照片的url是?");
-    images[albumIndex].push(url);
-    let photo = document.createElement("img");
-    previewPhoto.appendChild(photo);
-    photo.src = url;
-    photo.classList.add("preview-photo");
-    photo.addEventListener("click", () => {
-      var count = 0;
-      var photos = previewPhoto.childNodes;
-      for (var i = 0; i < photos.length; i++) {
-        if (photos[i].src === url) count = i;
-      }
-      previewIndex = count;
-      setDisplayPhoto(albumIndex, previewIndex);
-    });
-    setPreviewText();
-    setAllPhotoText();
+    if (url != null) {
+      images[albumIndex].push(url);
+      let photo = document.createElement("img");
+      previewPhoto.appendChild(photo);
+      photo.src = url;
+      photo.classList.add("preview-photo");
+      photo.addEventListener("click", () => {
+        var count = 0;
+        var photos = previewPhoto.childNodes;
+        for (var i = 0; i < photos.length; i++) {
+          if (photos[i].src === url) count = i;
+        }
+        previewIndex = count;
+        setDisplayPhoto(albumIndex, previewIndex);
+      });
+      setPreviewText();
+      setAllPhotoText();
+    }
   };
 }
 
