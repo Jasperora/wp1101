@@ -5,12 +5,12 @@ var todoInput = document.getElementsByClassName("todo-app__input"),
   allButton = document.getElementById("all"),
   activeButton = document.getElementById("active"),
   completedButton = document.getElementById("completed"),
-  cleanButton = document.getElementsByClassName("todo-app__clean");
+  cleanButton = document.getElementsByClassName("todo-app__clean"),
+  clear = document.getElementById("clean");
 
 var count = 0,
   all = 0,
-  finish = 0,
-  unfinish = 0;
+  finishCount = 0;
 
 function showCount() {
   var text = count + " left";
@@ -29,7 +29,7 @@ function addTodoItem() {
       addListItem();
       count++;
       all++;
-      unfinish++;
+
       checkCount();
       todoInput[0].value = "";
     }
@@ -45,9 +45,14 @@ function showFooter() {
 }
 
 function checkCount() {
-  if (count === 0) {
+  if (all === 0) {
     todoList.classList.add("hide");
     todoFooter[0].classList.add("hide");
+  }
+  if (finishCount === 0) {
+    clear.classList.add("hide");
+  } else {
+    clear.classList.remove("hide");
   }
   showCount();
 }
@@ -73,15 +78,18 @@ function addListItem() {
 
   let finished = false;
   div.addEventListener("click", function () {
+    input.checked = !input.checked;
     finished = !finished;
     if (finished) {
       text.classList.add("finished");
       count--;
+      finishCount++;
       checkCount();
     }
     if (!finished) {
       text.classList.remove("finished");
       count++;
+      finishCount--;
       checkCount();
     }
   });
@@ -94,11 +102,9 @@ function addListItem() {
   });
   img.addEventListener("click", function () {
     todoList.removeChild(item);
-    count--;
     all--;
-    if (finished) finish--;
-    else unfinish--;
-
+    if (!finished) count--;
+    if (finished) finishCount--;
     checkCount();
   });
 }
@@ -130,14 +136,27 @@ function showCompleted() {
 }
 
 function clean() {
-  for (let i = 0; i < todoList.children.length; i++) {
+  let finish = 0;
+  let tmp = todoList.children.length;
+  for (let i = 0; i < tmp; i++) {
     if (hasClass(todoList.children[i].children[1], "finished")) {
-      todoList.removeChild(todoList.children[i]);
       finish++;
     }
   }
+  let a = [];
+  let aCnt = 0;
+  for (let i = 0; i < tmp; i++) {
+    if (hasClass(todoList.children[i].children[1], "finished")) {
+      a[aCnt] = todoList.children[i];
+      aCnt++;
+    }
+  }
+  for (let i = 0; i < aCnt; i++) {
+    a[i].remove();
+  }
   all -= finish;
   count = all;
+  finishCount = 0;
   checkCount();
 }
 
@@ -157,6 +176,7 @@ function handleButton() {
   });
   cleanButton[0].addEventListener("click", () => {
     clean();
+    checkCount();
   });
 }
 
