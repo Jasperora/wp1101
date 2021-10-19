@@ -50,9 +50,9 @@ function checkCount() {
     todoFooter[0].classList.add("hide");
   }
   if (finishCount === 0) {
-    clear.classList.add("hide");
+    clear.classList.add("hidden");
   } else {
-    clear.classList.remove("hide");
+    clear.classList.remove("hidden");
   }
   showCount();
 }
