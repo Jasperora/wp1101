@@ -1,0 +1,25 @@
+.todo-app__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    /* 5*5=25 */
+    max-height: 23em;
+    overflow: auto;
+}
+
+.todo-app__item {
+    position: relative;
+    width: 100%;
+    min-height: 5em;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.089);
+    border-top: 0;
+}
+
+.hide{
+    display:"none"
+}
