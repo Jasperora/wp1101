@@ -70,7 +70,7 @@ function addListItem() {
   input.id = all;
   label.for = all;
   text.innerText = todoInput[0].value;
-  text.classList.add("todo-app__item-details");
+  text.classList.add("todo-app__item-detail");
   item.appendChild(div);
   div.appendChild(input);
   div.appendChild(label);
