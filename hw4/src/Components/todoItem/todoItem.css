@@ -52,3 +52,21 @@
 .todo-app__item-x {
     display: none;
 }
+
+.todo-app__item:hover .todo-app__item-x {
+    display: inline;
+    position: absolute;
+    max-width: 20px;
+    max-height: 20px;
+    right: 20px;
+}
+
+.todo-app__item:hover .todo-app__item-x:hover {
+    max-width: 25px;
+    max-height: 25px;
+    right: 17.5px;
+}
+
+.hidden{
+    visibility: hidden;
+}

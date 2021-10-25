@@ -36,3 +36,7 @@
     font-weight: 100;
     opacity: 0.6;
 }
+
+.hide{
+    display:"none"
+}

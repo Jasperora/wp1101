@@ -1,12 +1,15 @@
 import React from "react";
 import "./List.css";
-import Item from "../../Components/todoItem/todoItem";
 
 export default class List extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { children: "" };
+  }
   render() {
     return (
-      <ul className="todo-app__list " id="todo-list">
-        <Item id="0" input="first todo" />
+      <ul className="todo-app__list" id="todo-list">
+        {this.state.children}
       </ul>
     );
   }
