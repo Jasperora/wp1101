@@ -70,3 +70,8 @@
 .hidden{
     visibility: hidden;
 }
+
+.finished{
+    text-decoration: line-through; 
+    opacity: 0.5;
+}

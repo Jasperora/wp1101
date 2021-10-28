@@ -1,14 +1,13 @@
 import React from "react";
 import "./Section.css";
 import List from "../list/List";
-import Item from "../../Components/todoItem/todoItem";
+import Item from "../../Components/todoItem/Item";
 
 export default class Section extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { count: props.count, all: props.all, children: [] };
+    this.state = { children: [] };
     this.input = React.createRef();
-    this.list = React.createRef();
   }
 
   handleInput = (e) => {
@@ -18,11 +17,20 @@ export default class Section extends React.Component {
       this.input.current.value !== undefined
     ) {
       const item = (
-        <Item id={this.props.all} value={this.input.current.value} />
+        <Item
+          id={this.props.all}
+          key={this.props.all}
+          value={this.input.current.value}
+          addCount={() => this.props.addCount()}
+          addAll={() => this.props.addAll()}
+          subCount={() => this.props.subCount()}
+          subAll={() => this.props.subAll()}
+        />
       );
-      this.setState({ children: item });
-      this.setState({ all: ++this.state.all });
-      this.setState({ count: ++this.state.count });
+      this.setState((state) => ({ children: [...state.children, item] }));
+      // add item into array using setState
+      this.props.addCount();
+      this.props.addAll();
       this.input.current.value = "";
     }
   };
@@ -37,12 +45,7 @@ export default class Section extends React.Component {
           onKeyDown={this.handleInput}
           ref={this.input}
         ></input>
-        <List
-          children={this.state.children}
-          ref={this.list}
-          id="List"
-          className="hide"
-        />
+        <List children={this.state.children} id="List" />
       </section>
     );
   }

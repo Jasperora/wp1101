@@ -4,8 +4,8 @@ import "./Footer.css";
 export default class Footer extends React.Component {
   render() {
     return (
-      <footer className="todo-app__footer">
-        <div className="todo-app__total"></div>
+      <footer className={`todo-app__footer ${this.props.all === 0 && "hide"}`}>
+        <div className="todo-app__total">{this.props.count} left</div>
         <ul className="todo-app__view-buttons">
           <li id="all">
             <button>All</button>
