@@ -3,10 +3,17 @@ import "./List.css";
 
 export default class List extends React.Component {
   render() {
-    let { children } = this.props;
     return (
       <ul className="todo-app__list" id="todo-list">
-        {children.map((e) => e)}
+        {this.props.All
+          ? this.props.child.map((item) => <div className="">{item[0]}</div>)
+          : this.props.Active
+          ? this.props.child.map((item) => (
+              <div className={`${item[1] && "hide"}`}>{item[0]}</div>
+            ))
+          : this.props.child.map((item) => (
+              <div className={`${!item[1] && "hide"}`}>{item[0]}</div>
+            ))}
       </ul>
     );
   }

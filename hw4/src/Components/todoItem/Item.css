@@ -67,6 +67,10 @@
     right: 17.5px;
 }
 
+.hide{
+    display:none
+}
+
 .hidden{
     visibility: hidden;
 }
