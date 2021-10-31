@@ -54,12 +54,7 @@ export default class App extends React.Component {
       arr[idx][1] = _f;
       return arr;
     };
-    this.setState(
-      (state) => ({ child: newArray(state.child, index) }),
-      () => {
-        console.log(this.state.child.map((r) => r[1]));
-      }
-    );
+    this.setState((state) => ({ child: newArray(state.child, index) }));
   };
 
   clearCompleted() {

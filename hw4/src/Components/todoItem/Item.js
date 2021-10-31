@@ -5,7 +5,6 @@ import X from "./x.png";
 export default class Item extends React.Component {
   constructor(props) {
     super(props);
-    console.log(this.props.id);
     if (
       this.props.child.some((item) => {
         return item[0].props.id === this.props.id && item[1];
