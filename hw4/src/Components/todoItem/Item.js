@@ -5,9 +5,20 @@ import X from "./x.png";
 export default class Item extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      finished: false,
-    };
+    console.log(this.props.id);
+    if (
+      this.props.child.some((item) => {
+        return item[0].props.id === this.props.id && item[1];
+      })
+    ) {
+      this.state = {
+        finished: true,
+      };
+    } else {
+      this.state = {
+        finished: false,
+      };
+    }
     this.checkbox = React.createRef();
     this.handleX = this.handleX.bind(this);
   }

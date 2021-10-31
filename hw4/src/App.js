@@ -7,6 +7,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      child: [],
       count: 0,
       all: 0,
       All: true,
@@ -14,14 +15,55 @@ export default class App extends React.Component {
       Completed: false,
       clear: false,
     };
+    this.deleteItem = this.deleteItem.bind(this);
   }
+
+  deleteItem = (num) => {
+    let newList = [];
+    this.state.child.forEach((item) => {
+      if (item[0].props.id !== num) {
+        newList.push(item);
+      }
+    });
+    this.setState(() => ({ child: newList }));
+  };
+
+  clear = (clear) => {
+    if (clear) {
+      let newList = [];
+      newList = this.state.child.filter((item) => {
+        return !item[1];
+      });
+      this.setState(() => ({ child: newList }));
+      this.setState({ clear: false });
+      this.setState(() => ({ all: newList.length }));
+      this.setState(() => ({ count: newList.length }));
+    }
+  };
+
+  addChild = (item) => {
+    this.setState((state) => ({ child: [...state.child, item] }));
+  };
+
+  updateFinished = (_id, _f) => {
+    let index = 0;
+    while (this.state.child[index][0].props.id !== _id) {
+      index++;
+    }
+    let newArray = (arr, idx) => {
+      arr[idx][1] = _f;
+      return arr;
+    };
+    this.setState(
+      (state) => ({ child: newArray(state.child, index) }),
+      () => {
+        console.log(this.state.child.map((r) => r[1]));
+      }
+    );
+  };
 
   clearCompleted() {
     this.setState({ clear: true });
-  }
-
-  clearDone() {
-    this.setState({ clear: false });
   }
 
   setAll() {
@@ -57,6 +99,7 @@ export default class App extends React.Component {
   }
 
   render() {
+    this.clear(this.state.clear);
     return (
       <div id="root" className="todo-app__root">
         <header className="todo-app__header">
@@ -74,7 +117,11 @@ export default class App extends React.Component {
           count={this.state.count}
           all={this.state.all}
           id="Section"
+          child={this.state.child}
           clearDone={() => this.clearDone()}
+          deleteItem={(num) => this.deleteItem(num)}
+          updateFinished={(_id, _f) => this.updateFinished(_id, _f)}
+          addChild={(item) => this.addChild(item)}
         />
         <Footer
           handleCountAdd={(count) => this.handleCountAdd(count)}
