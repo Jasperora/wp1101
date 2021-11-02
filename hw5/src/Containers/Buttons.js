@@ -7,12 +7,12 @@ export default function Buttons(props) {
   const [num, setNum] = props.function3;
   const [second, setSecond] = props.function4;
   const [m, setM] = props.function5;
-  const [finished, setFinished] = props.function6;
+  //  const [finished, setFinished] = props.function6;
   const setMessage = props.setMessage;
   const addNum = (a) => props.addNum(a);
 
   useEffect(() => {
-    console.log("m:", m);
+    // console.log("m:", m);
     console.log("second:", second);
     console.log(num);
   }, [num, second]);
