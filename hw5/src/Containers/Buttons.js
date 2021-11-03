@@ -8,21 +8,23 @@ export default function Buttons(props) {
   const [second, setSecond] = props.function4;
   const [m, setM] = props.function5;
   //  const [finished, setFinished] = props.function6;
-  const setMessage = props.setMessage;
+  const [message, setMessage] = props.function7;
   const addNum = (a) => props.addNum(a);
 
   useEffect(() => {
-    // console.log("m:", m);
-    console.log("second:", second);
-    console.log(num);
-  }, [num, second]);
+    if (
+      numArr.toString() === "I,n,f,i,n,i,t,y" ||
+      numArr.toString() === "-,I,n,f,i,n,i,t,y"
+    ) {
+      setMessage("Overflow");
+    }
+  }, [numArr, message]);
   const addNumber = (icon) => {
     if (clicked.some((e) => e) && !second) {
       setNumArr([icon]);
       setM(true);
       setSecond(true);
     } else {
-      setSecond(false);
       if (numArr.length === 1 && numArr[0] === "0") setNumArr([icon]);
       else addNum(icon);
     }
@@ -258,7 +260,9 @@ export default function Buttons(props) {
                 icon="0"
                 onClick={() => {
                   setMessage("");
-                  if (!(numArr.length === 1 && numArr[0] === "0")) {
+                  if (clicked[3]) {
+                    setMessage("divided by 0");
+                  } else if (!(numArr.length === 1 && numArr[0] === "0")) {
                     addNum("0");
                   } else {
                     addNumber("0");

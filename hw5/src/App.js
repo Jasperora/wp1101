@@ -27,7 +27,7 @@ function App() {
         function4={[second, setSecond]}
         function5={[m, setM]}
         function6={[finished, setFinished]}
-        setMessage={() => setMessage()}
+        function7={[message, setMessage]}
         addNum={(a) => addNum(a)}
       />
     </div>
