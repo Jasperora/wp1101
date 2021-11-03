@@ -66,6 +66,17 @@ const Board = ({ boardSize, mineNum, backToHome }) => {
     {
       /* Reminder: The cell can be flagged only when it is not revealed. */
     }
+    if (e.button == 2)
+      if (!board[y][x].revealed) {
+        if (!board[y][x].flagged) {
+          board[y][x] = true;
+          setRemainFlagNum((p) => p + 1);
+        }
+        if (board[y][x].flagged) {
+          board[y][x] = false;
+          setRemainFlagNum((p) => p - 1);
+        }
+      }
   };
 
   const revealCell = (x, y) => {
@@ -81,6 +92,7 @@ const Board = ({ boardSize, mineNum, backToHome }) => {
     {
       /* Reminder: Also remember to handle the condition that after you reveal this cell then you win the game. */
     }
+    //if(board[y][x].revealed||board[y][x].flagged||win)
   };
 
   return (
@@ -92,21 +104,22 @@ const Board = ({ boardSize, mineNum, backToHome }) => {
         {/* Reminder: Remember to use the component <Cell> and <Dashboard>. See Cell.js and Dashboard.js for detailed information. */}
         <div className="boardContainer">
           <Dashboard remainFlagNum={remainFlagNum} gameOver={gameOver} />
-          {freshBoard().board.map((y) => {
-            <div id={`row${y.y}`} style={{ display: "flex" }}>
+          {freshBoard().board.map((y) => (
+            <div id={`row${y[0].y}`} style={{ display: "flex" }}>
               {y.map((x) => (
                 <Cell
                   key={`${x.y}-${x.x}`}
                   id={`${x.y}-${x.x}`}
                   colIdx={x.x}
                   rowIdx={x.y}
+                  //onClick={(e) => updateFlag(e, x.x, x.y)}
                   updateFlag={(e) => updateFlag(e, x.x, x.y)}
-                  revealCell={revealCell(x.x, x.y)}
+                  revealCell={() => revealCell(x.x, x.y)}
                   detail={x}
                 ></Cell>
               ))}
-            </div>;
-          })}
+            </div>
+          ))}
         </div>
       </div>
     </div>
