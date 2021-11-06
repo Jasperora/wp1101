@@ -18,7 +18,7 @@ export default function Buttons(props) {
     ) {
       setMessage("Overflow");
     }
-  }, [numArr, message]);
+  }, [numArr, message, setMessage]);
   const addNumber = (icon) => {
     if (clicked.some((e) => e) && !second) {
       setNumArr([icon]);
@@ -260,12 +260,13 @@ export default function Buttons(props) {
                 icon="0"
                 onClick={() => {
                   setMessage("");
-                  if (clicked[3]) {
+                  addNumber("0");
+                  if (
+                    clicked[3] &&
+                    (numArr.some((e) => e === "." || numArr.length === 0) ||
+                      numArr.length === 1)
+                  ) {
                     setMessage("divided by 0");
-                  } else if (!(numArr.length === 1 && numArr[0] === "0")) {
-                    addNum("0");
-                  } else {
-                    addNumber("0");
                   }
                 }}
               />
