@@ -100,8 +100,5 @@ const queryCard = async (type, queryString) => {
 
 const db = mongoose.connection;
 db.on("error", (err) => console.log(err));
-db.once("open", async () => {
-  await deleteDB();
-});
 
 export { createCard, deleteDB, queryCard };
