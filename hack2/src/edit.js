@@ -12,12 +12,14 @@ function Edit(props) {
   // TODO 4-(2): complete handleSubmit function to create a new post and save it to database
   const handleSubmit = async () => {
     const date = new Date();
-    const newPost = await instance.post("/newPost", {
-      postId: uuidv4(),
-      title: title,
-      content: content,
-      timestamp: date,
-    });
+    if (content.trim() !== "" && title.trim() !== "") {
+      const newPost = await instance.post("/newPost", {
+        postId: uuidv4(),
+        title: title,
+        content: content,
+        timestamp: date,
+      });
+    }
     setTimeout(() => {
       props.navigate(-1);
     }, 300);

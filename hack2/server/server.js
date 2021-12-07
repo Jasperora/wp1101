@@ -32,7 +32,9 @@ mongoose
   })
   .then((res) => {
     console.log("mongo db connection created");
-    if (process.env.MODE === "EXAM") dataInit();
+    if (process.env.MODE === "EXAM") {
+      dataInit();
+    }
   })
   .catch((e) => {
     console.log("mongo db connection failed");
