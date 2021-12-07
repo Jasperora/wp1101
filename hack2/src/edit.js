@@ -15,8 +15,8 @@ function Edit(props) {
     if (content.trim() !== "" && title.trim() !== "") {
       const newPost = await instance.post("/newPost", {
         postId: uuidv4(),
-        title: title,
-        content: content,
+        title: title.trim(),
+        content: content.trim(),
         timestamp: date,
       });
     }
