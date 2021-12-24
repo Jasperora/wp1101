@@ -7,7 +7,7 @@ const MessageSchema = new Schema({
   },
   body: {
     type: String,
-    required: [true, "Bosy field is required."],
+    required: [true, "Body field is required."],
   },
 });
 const Message = mongoose.model("message", MessageSchema);
