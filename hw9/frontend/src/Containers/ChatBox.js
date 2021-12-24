@@ -36,7 +36,7 @@ const ChatBox = ({ me, friend, ...props }) => {
         variables: { from: me, to: friend },
         updateQuery: (prev, { subscriptionData }) => {
           if (!subscriptionData.data) return prev;
-          const newMessge = subscriptionData.data.message.message;
+          const newMessage = subscriptionData.data.message.message;
 
           console.log(prev);
 

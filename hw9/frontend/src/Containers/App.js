@@ -21,7 +21,7 @@ const App = () => {
 
   const [signedIn, setSignedIn] = useState(false);
   const [me, setMe] = useState(savedMe || "");
-
+  /*
   const displayStatus = (payload) => {
     if (payload.msg) {
       const { type, msg } = payload;
@@ -40,23 +40,23 @@ const App = () => {
         break;
     }
   };
-
+*/
   useEffect(() => {
     if (signedIn) {
-      localStorage.setItem(LOCALSTORAGE_KEY, me);
+      localStorage.setItem(LOCAL_STORAGE_KEY, me);
     }
   }, [signedIn, me]);
 
   return (
     <Wrapper>
       {signedIn ? (
-        <ChatRoom me={me} displayStatus={displayStatus} />
+        <ChatRoom me={me} /* displayStatus={displayStatus}*/ />
       ) : (
         <SignIn
           me={me}
           setMe={setMe}
           setSignedIn={setSignedIn}
-          displayStatus={displayStatus}
+          /*displayStatus={displayStatus}*/
         />
       )}
     </Wrapper>
