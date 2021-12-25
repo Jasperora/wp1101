@@ -28,6 +28,7 @@ const Mutation = {
     pubsub.publish(`chatBox ${chatBoxName}`, {
       message: { mutation: "CREATED", message: newMsg },
     });
+
     return { mutation: "CREATED", message: newMsg };
   },
   async createChatBox(parent, { name1, name2 }, { db }, info) {

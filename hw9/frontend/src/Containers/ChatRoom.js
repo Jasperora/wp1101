@@ -21,7 +21,7 @@ const Wrapper = styled(Tabs)`
 const ChatRoom = ({ me, displayStatus }) => {
   const [messageInput, setMessageInput] = useState("");
   const [activeKey, setActiveKey] = useState("");
-  const [chatBoxes, createChatBox, removeChatBox] = useChatBox();
+  const { chatBoxes, createChatBox, removeChatBox } = useChatBox();
   const [modalVisible, setModalVisible] = useState(false);
   const [startChat] = useMutation(CREATE_CHATBOX_MUTATION);
   const [sendMessage] = useMutation(CREATE_MESSAGE_MUTATION);
@@ -51,7 +51,7 @@ const ChatRoom = ({ me, displayStatus }) => {
         >
           {chatBoxes.map((friend) => {
             return (
-              <Tabs.TabPane tab={friend} closable={true} ley={friend}>
+              <Tabs.TabPane tab={friend} closable={true} key={friend}>
                 <ChatBox me={me} friend={friend} key={friend} />
               </Tabs.TabPane>
             );
@@ -66,7 +66,6 @@ const ChatRoom = ({ me, displayStatus }) => {
                 name2: name,
               },
             });
-
             setActiveKey(createChatBox(name));
             setModalVisible(false);
           }}
@@ -88,7 +87,9 @@ const ChatRoom = ({ me, displayStatus }) => {
             });
             return;
           }
-          sendMessage({ name: me, body: msg });
+          sendMessage({
+            variables: { from: me, to: activeKey, message: msg },
+          });
           setMessageInput("");
         }}
       />

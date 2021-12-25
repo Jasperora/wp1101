@@ -21,7 +21,7 @@ const App = () => {
 
   const [signedIn, setSignedIn] = useState(false);
   const [me, setMe] = useState(savedMe || "");
-  /*
+
   const displayStatus = (payload) => {
     if (payload.msg) {
       const { type, msg } = payload;
@@ -29,18 +29,19 @@ const App = () => {
         content: msg,
         duration: 1.5,
       };
-    }
-    switch (type) {
-      case "success":
-        message.success(content);
-        break;
-      case "error":
-      default:
-        message.error(content);
-        break;
+
+      switch (type) {
+        case "success":
+          message.success(content);
+          break;
+        case "error":
+        default:
+          message.error(content);
+          break;
+      }
     }
   };
-*/
+
   useEffect(() => {
     if (signedIn) {
       localStorage.setItem(LOCAL_STORAGE_KEY, me);
@@ -50,13 +51,13 @@ const App = () => {
   return (
     <Wrapper>
       {signedIn ? (
-        <ChatRoom me={me} /* displayStatus={displayStatus}*/ />
+        <ChatRoom me={me} displayStatus={displayStatus} />
       ) : (
         <SignIn
           me={me}
           setMe={setMe}
           setSignedIn={setSignedIn}
-          /*displayStatus={displayStatus}*/
+          displayStatus={displayStatus}
         />
       )}
     </Wrapper>

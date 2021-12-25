@@ -15,7 +15,7 @@ const server = new GraphQLServer({
   resolvers: {
     Query,
     Mutation,
-    //Subscription,
+    Subscription,
     Message,
     ChatBox,
   },
