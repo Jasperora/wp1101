@@ -18,6 +18,7 @@ const server = new GraphQLServer({
     Subscription,
     Message,
     ChatBox,
+    User,
   },
   context: {
     db,
