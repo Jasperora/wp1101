@@ -22,10 +22,12 @@ export const TASK_UPDATED_SUBSCRIPTION = gql`
 `;
 
 // TODO 6.4 Uncomment the following line and finish gql part
+/*
 export const TASK_DELETED_SUBSCRIPTION = gql`
   subscription OnTaskDeleted {
-    taskDeleted {
-      
+    taskDeleted{
+
     }
   }
 `;
+*/
