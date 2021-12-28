@@ -9,13 +9,14 @@ import ChatModal from "./ChatModal";
 import useChatBox from "../Hooks/useChatBox";
 
 const Wrapper = styled(Tabs)`
-    width:100%
-    height:300px
-    background:#eeeeee52
-    border-radius:10px
-    margin:20px
-    padding:20px
-    display:flex
+  width: 100%;
+  height: 300px;
+  background: #eeeeee52;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
+  display: flex;
+  overflow-y: scroll;
 `;
 
 const ChatRoom = ({ me, displayStatus }) => {

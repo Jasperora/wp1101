@@ -2,6 +2,17 @@ import { Input } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import Title from "../Components/Title";
 import { message } from "antd";
+import styled from "styled-components";
+
+const Main = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 500px;
+  margin: auto;
+`;
 
 const displayStatus = (payload) => {
   if (payload.msg) {
@@ -24,7 +35,7 @@ const displayStatus = (payload) => {
 
 const SignIn = ({ me, setMe, setSignedIn }) => {
   return (
-    <>
+    <Main>
       <Title>
         <h1>My Chat Room</h1>
       </Title>
@@ -41,7 +52,7 @@ const SignIn = ({ me, setMe, setSignedIn }) => {
           else setSignedIn(true);
         }}
       />
-    </>
+    </Main>
   );
 };
 
