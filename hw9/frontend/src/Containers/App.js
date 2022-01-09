@@ -7,13 +7,13 @@ import styled from "styled-components";
 const LOCAL_STORAGE_KEY = "save-me";
 
 const Wrapper = styled.div`
-display:flex
-flex-direction:column
-align-item:center
-justify-content:center
-height:100vh
-width:500px
-margin:auto
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 500px;
+  margin: auto;
 `;
 
 const App = () => {
@@ -29,21 +29,22 @@ const App = () => {
         content: msg,
         duration: 1.5,
       };
-    }
-    switch (type) {
-      case "success":
-        message.success(content);
-        break;
-      case "error":
-      default:
-        message.error(content);
-        break;
+
+      switch (type) {
+        case "success":
+          message.success(content);
+          break;
+        case "error":
+        default:
+          message.error(content);
+          break;
+      }
     }
   };
 
   useEffect(() => {
     if (signedIn) {
-      localStorage.setItem(LOCALSTORAGE_KEY, me);
+      localStorage.setItem(LOCAL_STORAGE_KEY, me);
     }
   }, [signedIn, me]);
 

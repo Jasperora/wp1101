@@ -1,3 +1,4 @@
+import { makeName } from "./utility";
 const ChatBox = {
   messages(parent, args, { db }, info) {
     return Promise.all(

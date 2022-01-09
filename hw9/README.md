@@ -1,1 +1,1 @@
-# wp1101
+# 在hw9底下用yarn server開啟server,用yarn start開啟前端

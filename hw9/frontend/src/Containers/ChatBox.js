@@ -14,7 +14,7 @@ const Messages = styled.div`
 const ChatBox = ({ me, friend, ...props }) => {
   const messagesFooter = useRef(null);
 
-  const { data, loading, subscibeToMore } = useQuery(CHATBOX_QUERY, {
+  const { data, loading, subscribeToMore } = useQuery(CHATBOX_QUERY, {
     variables: {
       name1: me,
       name2: friend,
@@ -31,12 +31,13 @@ const ChatBox = ({ me, friend, ...props }) => {
 
   useEffect(() => {
     try {
-      subscibeToMore({
+      subscribeToMore({
         document: MESSAGE_SUBSCRIPTION,
         variables: { from: me, to: friend },
         updateQuery: (prev, { subscriptionData }) => {
           if (!subscriptionData.data) return prev;
-          const newMessge = subscriptionData.data.message.message;
+
+          const newMessage = subscriptionData.data.message.message;
 
           console.log(prev);
 
@@ -48,7 +49,7 @@ const ChatBox = ({ me, friend, ...props }) => {
         },
       });
     } catch (e) {}
-  }, [subscibeToMore]);
+  }, [subscribeToMore]);
 
   if (loading) return <p>loading</p>;
 

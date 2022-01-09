@@ -7,6 +7,10 @@ type Mutation{
     createChatBox(name1:String,name2:String):ChatBox!
 }
 
+type Subscription{
+    message(from:String!,to:String!):MessageSubscriptionPayload!
+}
+
 type ChatBox{
     id:ID!
     name:String!
