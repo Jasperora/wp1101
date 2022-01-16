@@ -3,6 +3,7 @@ const Mutation = {
    * Add a task
    */
   createTask: async (parent, { input }, { taskModel, pubSub }) => {
+    console.log("test:", input.dueDate);
     const newTask = new taskModel(input);
     await newTask.save();
     pubSub.publish("TASK_CREATED", {

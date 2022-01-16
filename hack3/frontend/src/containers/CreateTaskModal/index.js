@@ -48,6 +48,8 @@ export default function CreateTaskModal({ open, handleCloseCreateTaskModal }) {
       return;
     }
     // TODO 4.2 Uncomment the following lines
+    console.log("Data: ", formData.dueDate);
+    console.log("parseInt: ", parseInt(formData.dueDate.format("x")));
     createTask({
       variables: {
         input: {
