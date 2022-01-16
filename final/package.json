@@ -1,0 +1,21 @@
+{
+  "name": "Event-Allocator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Xuan-Yi/Event-Allocator.git",
+  "author": "Xuan-Yi <redpig815@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "heroku-postbuild": "cd frontend && yarn && yarn build",
+    "start": "cd backend && yarn && yarn deploy"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.5.6",
+    "@apollo/react-hooks": "^4.0.0",
+    "@mui/icons-material": "^5.2.0",
+    "apollo-link-ws": "^1.0.20",
+    "graphql": "^16.2.0",
+    "react-apollo": "^3.1.5",
+    "subscriptions-transport-ws": "^0.11.0"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "server": "nodemon ./src/index.js --ext js --exec babel-node",
+    "deploy": "node ./src/index.js"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/node": "^7.16.0",
+    "@babel/plugin-proposal-class-properties": "^7.16.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.16.0",
+    "@babel/plugin-transform-arrow-functions": "^7.16.0",
+    "@babel/preset-env": "^7.16.4"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv-defaults": "^3.0.0",
+    "graphql-yoga": "^1.18.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.1.5",
+    "nodemon": "^2.0.15",
+    "path": "^0.12.7",
+    "url": "^0.11.0",
+    "uuid": "^8.3.2"
+  }
+}

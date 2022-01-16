@@ -1,0 +1,56 @@
+scalar Date
+
+type User{
+    id:ID!
+    name:String!
+    password:String!
+    events:[String]!
+    chooseTime:[[Boolean]]!
+}
+
+type Event{
+    id:String!
+    name:String!
+    content:String!
+    launcher:String!
+    endTime:[Date]!
+    attender:[[String]]!
+    startTime:[Date]!
+}
+
+type Query{
+    event(name:String):[Event]!
+    chooseTime(userName:String):[[Boolean]]!
+}
+
+type Mutation{
+    createUser(name:String!,password:String!):UserMutationPayload
+    createEvent(id:String!,name:String!,content:String!,launcher:String!,endTime:[Date]!,startTime:[Date]!):Event!
+    login(name:String!,password:String!):UserMutationPayload
+    addEvent(userName:String!,id:String!):String!
+    modifyEventAttender(action:String!,eventID:String!,userName:String!,index:Int!):String!
+    deleteEvent(eventID:String!):String!
+    initialization:initializationPayload
+}
+
+type Subscription{
+    eventCreated(name:String!):EventSubscriptionPayload
+    eventUpdated(userName:String!):EventSubscriptionPayload
+    eventDeleted:String!
+    chooseTimeUpdated(userName:String!):[[Boolean]]!
+}
+
+type UserMutationPayload{
+    status:String!
+    token:String
+}
+
+type EventSubscriptionPayload{
+    event:Event!
+}
+
+type initializationPayload{
+    authName:String
+    status:String
+}
+
