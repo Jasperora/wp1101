@@ -18,15 +18,29 @@ export default function Modal({ restartGame, backToHome, win }) {
   }, []);
 
   return (
-    <div className="modal">
-      {/* -- TODO 5-1 -- */}
-      {/* Useful Hint: style = {{opacity: 1 or 0 }} */}
+    /* -- TODO 6 -- */
+    /* Useful Hint: style = {{opacity: 1 or 0 }} */
+    <div className="modal" style={{ opacity: render ? 1 : 0 }}>
       <div className="modalWrapper"></div>
       <div className="modalContent">
-        <div className="modalResult">{win ? "WIN" : "Game Over"}</div>
+        {win ? (
+          <div className="modalResult">WIN</div>
+        ) : (
+          <div className="modalResult">Game Over</div>
+        )}
         <div className="modalBtnWrapper">
-          <div className="modalBtn">{win ? "New Game" : "Try Again"}</div>
-          <div className="modalBtn">Back to Home</div>
+          {win ? (
+            <div className="modalBtn" onClick={() => restartGame()}>
+              New Game
+            </div>
+          ) : (
+            <div className="modalBtn" onClick={() => restartGame()}>
+              Try Again
+            </div>
+          )}
+          <div className="modalBtn" onClick={() => backToHome()}>
+            Back to Home
+          </div>
         </div>
       </div>
       <div className="modalWrapper"></div>

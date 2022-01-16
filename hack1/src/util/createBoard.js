@@ -1,11 +1,3 @@
-/****************************************************************************
-  FileName      [ createBoard.js ]
-  PackageName   [ src/util ]
-  Author        [ Cheng-Hua Lu, Chin-Yi Cheng ]
-  Synopsis      [ This file generates the pattern of mines and the board. ]
-  Copyright     [ 2021 10 ]
-****************************************************************************/
-
 import randomNum from "./randomFixSeed";
 
 export default (boardSize, mineNum) => {
@@ -54,7 +46,7 @@ export default (boardSize, mineNum) => {
   }
 
   {
-    /* -- TODO 2 -- */
+    /* -- TODO 3 -- */
   }
   {
     /* Useful Hints: Calculate and update the value of each cell in the board. The value means the number of mines adjacent to the cell. */
@@ -69,83 +61,37 @@ export default (boardSize, mineNum) => {
     /* Testing: printBoard() */
   }
 
-  for (let i = 0; i < boardSize; i++) {
-    for (let j = 0; j < boardSize; j++) {
-      if (i === 0) {
-        if (j === 0) {
-          let cnt = 0;
-          if (board[0][1].value === "💣") cnt++;
-          if (board[1][0].value === "💣") cnt++;
-          if (board[1][1].value === "💣") cnt++;
-          board[i][j].value = cnt;
-        } else if (j === boardSize - 1) {
-          let cnt = 0;
-          if (board[0][boardSize - 2].value === "💣") cnt++;
-          if (board[1][boardSize - 1].value === "💣") cnt++;
-          if (board[1][boardSize - 2].value === "💣") cnt++;
-          board[i][j].value = cnt;
-        } else {
-          let cnt = 0;
-          if (board[i][j - 1].value === "💣") cnt++;
-          if (board[i][j + 1].value === "💣") cnt++;
-          if (board[i + 1][j].value === "💣") cnt++;
-          if (board[i + 1][j + 1].value === "💣") cnt++;
-          if (board[i + 1][j - 1].value === "💣") cnt++;
-          board[i][j].value = cnt;
-        }
-      } else if (i === boardSize - 1) {
-        if (j === 0) {
-          let cnt = 0;
-          if (board[i - 1][j + 1].value === "💣") cnt++;
-          if (board[i - 1][j].value === "💣") cnt++;
-          if (board[i][j + 1].value === "💣") cnt++;
-          board[i][j].value = cnt;
-        } else if (j === boardSize - 1) {
-          let cnt = 0;
-          if (board[i - 1][j - 1].value === "💣") cnt++;
-          if (board[i - 1][j].value === "💣") cnt++;
-          if (board[i][j - 1].value === "💣") cnt++;
-          board[i][j].value = cnt;
-        } else {
-          let cnt = 0;
-          if (board[i - 1][j - 1].value === "💣") cnt++;
-          if (board[i - 1][j].value === "💣") cnt++;
-          if (board[i - 1][j + 1].value === "💣") cnt++;
-          if (board[i][j - 1].value === "💣") cnt++;
-          if (board[i][j + 1].value === "💣") cnt++;
-          board[i][j].value = cnt;
-        }
-      } else if (j === 0) {
-        let cnt = 0;
-        if (board[i - 1][j].value === "💣") cnt++;
-        if (board[i + 1][j].value === "💣") cnt++;
-        if (board[i - 1][j + 1].value === "💣") cnt++;
-        if (board[i][j + 1].value === "💣") cnt++;
-        if (board[i + 1][j + 1].value === "💣") cnt++;
-        board[i][j].value = cnt;
-      } else if (j === boardSize - 1) {
-        let cnt = 0;
-        if (board[i - 1][j - 1].value === "💣") cnt++;
-        if (board[i + 1][j - 1].value === "💣") cnt++;
-        if (board[i][j - 1].value === "💣") cnt++;
-        if (board[i - 1][j].value === "💣") cnt++;
-        if (board[i + 1][j].value === "💣") cnt++;
-        board[i][j].value = cnt;
-      } else {
-        let cnt = 0;
-        if (board[i - 1][j - 1].value === "💣") cnt++;
-        if (board[i - 1][j + 1].value === "💣") cnt++;
-        if (board[i - 1][j].value === "💣") cnt++;
-        if (board[i][j - 1].value === "💣") cnt++;
-        if (board[i][j + 1].value === "💣") cnt++;
-        if (board[i + 1][j - 1].value === "💣") cnt++;
-        if (board[i + 1][j].value === "💣") cnt++;
-        if (board[i + 1][j + 1].value === "💣") cnt++;
-        board[i][j].value = cnt;
-      }
+  // Add Numbers
+  for (let r = 0; r < boardSize; r++) {
+    for (let c = 0; c < boardSize; c++) {
+      if (board[r][c].value === "💣") continue;
+      // Top
+      if (r > 0 && board[r - 1][c].value === "💣") board[r][c].value++;
+      // Top Right
+      if (r > 0 && c < boardSize - 1 && board[r - 1][c + 1].value === "💣")
+        board[r][c].value++;
+      // Right
+      if (c < boardSize - 1 && board[r][c + 1].value === "💣")
+        board[r][c].value++;
+      // Bottom Right
+      if (
+        r < boardSize - 1 &&
+        c < boardSize - 1 &&
+        board[r + 1][c + 1].value === "💣"
+      )
+        board[r][c].value++;
+      // Bottom
+      if (r < boardSize - 1 && board[r + 1][c].value === "💣")
+        board[r][c].value++;
+      // Bottom Left
+      if (r < boardSize - 1 && c > 0 && board[r + 1][c - 1].value === "💣")
+        board[r][c].value++;
+      // Left
+      if (c > 0 && board[r][c - 1].value === "💣") board[r][c].value++;
+      // Top Left
+      if (r > 0 && c > 0 && board[r - 1][c - 1].value === "💣")
+        board[r][c].value++;
     }
   }
-  printBoard();
-
   return { board, mineLocations };
 };

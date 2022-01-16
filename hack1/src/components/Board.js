@@ -30,23 +30,28 @@ const Board = ({ boardSize, mineNum, backToHome }) => {
   // Creating a board
   const freshBoard = () => {
     {
-      /* -- TODO 3-1 -- */
+      /* -- TODO 4-1 -- */
     }
     {
       /* Useful Hint: createBoard(...) */
     }
-    //createBoard(10, 40);
-    const { board, mineLocations } = createBoard(10, 40);
-    return { board, mineLocations };
+    const newBoard = createBoard(boardSize, mineNum);
+    setNonMineCount(boardSize * boardSize - mineNum);
+    setRemainFlagNum(mineNum);
+    setMineLocations(newBoard.mineLocations);
+    setBoard(newBoard.board);
   };
 
   const restartGame = () => {
     {
-      /* -- TODO 5-2 -- */
+      /* -- TODO 4-1 -- */
     }
     {
       /* Useful Hint: freshBoard() */
     }
+    freshBoard();
+    setGameOver(false);
+    setWin(false);
   };
 
   // On Right Click / Flag Cell
@@ -55,7 +60,7 @@ const Board = ({ boardSize, mineNum, backToHome }) => {
     e.preventDefault();
     // Deep copy of a state
     {
-      /* -- TODO 3-2 -- */
+      /* -- TODO 4-3 -- */
     }
     {
       /* Useful Hint: A cell is going to be flagged. 'x' and 'y' are the xy-coordinate of the cell. */
@@ -66,22 +71,23 @@ const Board = ({ boardSize, mineNum, backToHome }) => {
     {
       /* Reminder: The cell can be flagged only when it is not revealed. */
     }
-    if (e.button == 2)
-      if (!board[y][x].revealed) {
-        if (!board[y][x].flagged) {
-          board[y][x] = true;
-          setRemainFlagNum((p) => p + 1);
-        }
-        if (board[y][x].flagged) {
-          board[y][x] = false;
-          setRemainFlagNum((p) => p - 1);
-        }
-      }
+    let newBoard = JSON.parse(JSON.stringify(board));
+    let newFlagNum = remainFlagNum;
+    if (newBoard[x][y].revealed === true) return;
+    if (newBoard[x][y].flagged !== true && newBoard[x][y].revealed !== true) {
+      newBoard[x][y].flagged = true;
+      newFlagNum--;
+    } else {
+      newBoard[x][y].flagged = false;
+      newFlagNum++;
+    }
+    setRemainFlagNum(newFlagNum);
+    setBoard(newBoard);
   };
 
   const revealCell = (x, y) => {
     {
-      /* -- TODO 4-1 -- */
+      /* -- TODO 4-4 -- */
     }
     {
       /* Reveal the cell */
@@ -92,34 +98,63 @@ const Board = ({ boardSize, mineNum, backToHome }) => {
     {
       /* Reminder: Also remember to handle the condition that after you reveal this cell then you win the game. */
     }
-    //if(board[y][x].revealed||board[y][x].flagged||win)
-  };
+    if (board[x][y].revealed || gameOver || board[x][y].flagged) return;
 
+    let newBoard = JSON.parse(JSON.stringify(board));
+    // Hit the mine!!
+    if (newBoard[x][y].value === "💣") {
+      for (let i = 0; i < mineLocations.length; i++) {
+        if (!newBoard[mineLocations[i][0]][mineLocations[i][1]].flagged)
+          newBoard[mineLocations[i][0]][mineLocations[i][1]].revealed = true;
+      }
+      setBoard(newBoard);
+      setGameOver(true);
+    }
+    // Reveal the number cell
+    else {
+      let newRevealedBoard = revealed(newBoard, x, y, nonMineCount);
+      setBoard(newRevealedBoard.board);
+      setNonMineCount(newRevealedBoard.newNonMinesCount);
+      if (newRevealedBoard.newNonMinesCount === 0) {
+        console.log("win");
+        setGameOver(true);
+        setWin(true);
+      }
+    }
+  };
   return (
     <div className="boardPage">
       <div className="boardWrapper">
-        {/* This line of code is just for testing. Please delete it if you finish this function. */}
-        {/* -- TODO 3-1 -- */}
+        {/* <h1>This is the board Page!</h1>  This line of code is just for testing. Please delete it if you finish this function. */}
+
+        {/* -- TODO 4-2 -- */}
         {/* Useful Hint: The board is composed of BOARDSIZE*BOARDSIZE of Cell (2-dimention). So, nested 'map' is needed to implement the board.  */}
         {/* Reminder: Remember to use the component <Cell> and <Dashboard>. See Cell.js and Dashboard.js for detailed information. */}
+
+        {gameOver && (
+          <Modal restartGame={restartGame} backToHome={backToHome} win={win} />
+        )}
         <div className="boardContainer">
           <Dashboard remainFlagNum={remainFlagNum} gameOver={gameOver} />
-          {freshBoard().board.map((y) => (
-            <div id={`row${y[0].y}`} style={{ display: "flex" }}>
-              {y.map((x) => (
-                <Cell
-                  key={`${x.y}-${x.x}`}
-                  id={`${x.y}-${x.x}`}
-                  colIdx={x.x}
-                  rowIdx={x.y}
-                  //onClick={(e) => updateFlag(e, x.x, x.y)}
-                  updateFlag={(e) => updateFlag(e, x.x, x.y)}
-                  revealCell={() => revealCell(x.x, x.y)}
-                  detail={x}
-                ></Cell>
-              ))}
-            </div>
-          ))}
+          {board.map((singleRow, index1) => {
+            const Id = "row" + index1.toString();
+            return (
+              <div style={{ display: "flex" }} key={index1} id={Id}>
+                {singleRow.map((singleBlock, index2) => {
+                  return (
+                    <Cell
+                      rowIdx={index1}
+                      colIdx={index2}
+                      detail={singleBlock}
+                      updateFlag={updateFlag}
+                      revealCell={revealCell}
+                      key={index2}
+                    />
+                  );
+                })}
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
